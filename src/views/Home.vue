@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Seja bem-vindo"/>
+    <h1>This is an home page</h1>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+/* eslint-disable */
+
+import Util from '../Utils/';
 
 export default {
   name: 'home',
-  components: {
-    HelloWorld,
+
+  created() {
+    Util.authPage();
   },
+
 };
 </script>
