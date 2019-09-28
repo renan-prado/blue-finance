@@ -106,6 +106,15 @@ class Firebase {
             });
     }
 
+    verifyEmail(email, callback){
+        firebase
+            .auth()
+            .fetchSignInMethodsForEmail(email)
+            .then(function(EmailAuthProvider){
+                callback(EmailAuthProvider.length > 0);
+            });
+    }
+
 }
 
 export default new Firebase()

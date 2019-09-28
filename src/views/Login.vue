@@ -4,6 +4,7 @@
 import Util from '../Utils/';
 import Firebase from '../database/firebase';
 import Loading from '../components/Loading';
+import Swal from 'sweetalert2';
 
 export default {
   name: 'login',
@@ -32,15 +33,23 @@ export default {
 
       const email = this.email;
       const password = this.password;
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'center',
+        showConfirmButton: false,
+        timer: 3000
+      });
 
       Firebase
         .login(email, password, (code, message) => {
           
           this.loading = false;
 
-          if(err){
-            alert(code);      
-          }
+            Toast.fire({
+              type: 'warning',
+              title: 'O email ou a senha estão incorretos'
+            });
+          
 
         });
 
