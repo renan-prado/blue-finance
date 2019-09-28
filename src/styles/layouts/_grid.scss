@@ -1,3 +1,5 @@
+@import '../abstracts//variables';
+
 $grid-gutter: 1%;
 $grid-columns: 12;
 $grid-max: 980px;
@@ -18,5 +20,52 @@ $grid-max: 980px;
 @for $i from 1 through $grid-columns{ 
   .grid-#{$i} {
     width: 100% / $grid-columns * $i;
+  }
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+// large desktop
+@media screen and (min-width: $screen-device-desktop-large){
+ 
+  .container {
+    width: $screen-device-desktop-large;
+  }
+}
+
+// desktop device
+@media screen and (min-width: $screen-device-desktop) and (max-width: $screen-device-desktop-large){
+ 
+  .container {
+    width: $screen-device-desktop;
+  }
+}
+
+// tablet device
+@media screen and (min-width: $screen-device-tablet) and (max-width: $screen-device-desktop){
+ 
+  .container {
+    width: $screen-device-tablet;
+  }
+}
+
+// mobile device
+@media screen and (min-width: $screen-device-mobile) and (max-width: $screen-device-tablet){
+ 
+  .container {
+    width: $screen-device-mobile;
+  }
+}
+
+// mobile small device
+@media screen and (max-width: $screen-device-mobile){
+ 
+  .container {
+    width: 100%;
   }
 }

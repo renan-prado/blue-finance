@@ -1,2 +1,6 @@
 @import './abstracts/';
 @import './layouts/';
+
+body {
+    background-color: $color-grey-light;
+}
