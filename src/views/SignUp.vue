@@ -2,91 +2,59 @@
 /* eslint-disable */
 
 import Util from '../Utils/';
-import Firebase from '../database/firebase';
 import Loading from '../components/Loading';
 
 export default {
-  name: 'login',
-
-  data(){
-    return {
-      email: 'renanprado96@gmail.com',
-      password: 'egtsejbegtsejb',
-      loading: false
-    }
-  },
+  name: 'signup',
 
   created() {
     Util.authPageLogin();
   },
-  
+
   components: {
     Loading
-  },
-
-  methods:{
-
-    toLogin: function(){
-
-      this.loading = true;
-
-      const email = this.email;
-      const password = this.password;
-
-      Firebase
-        .login(email, password, (code, message) => {
-          
-          this.loading = false;
-
-          if(err){
-            alert(code);      
-          }
-
-        });
-
-    }
-
   }
-
-};
+}
 
 </script>
 
 <template>
   <div class="main">
     <div class="container">
-      
-      <Loading v-show="loading" />
-      
+
       <div class="login">
 
         <div class="login__container">
           
           <!-- Header -->
           <div class="login__header">
-            <h1> Entrar </h1>
+            <h1> Cadastrar </h1>
           </div>
 
           <!-- Content -->
           <div class="login__content">
 
             <div class="login__content-section">
-              <input type="email" v-model="email" placeholder="Digite seu email" />
+              <input type="email" placeholder="Digite o seu email" />
             </div>
 
             <div class="login__content-section">
-              <input type="password" v-model="password" placeholder="Digite sua senha" />
+              <input type="password" placeholder="Digite a sua senha" />
             </div>
 
             <div class="login__content-section">
-              <button @click="toLogin"> Entrar </button>
+              <input type="password" placeholder="Confirme a sua senha" />
+            </div>
+
+            <div class="login__content-section">
+              <button> Cadastrar </button>
             </div>
 
           </div>
 
           <!-- Footer -->
           <div class="login__footer">
-            <router-link to="/signup">Criar uma conta</router-link>
+            <router-link to="/login">Voltar á página de Login</router-link>
           </div>
 
         </div> <!-- ./ login__container -->

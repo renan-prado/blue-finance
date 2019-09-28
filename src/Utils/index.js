@@ -5,7 +5,13 @@ class Util {
 
     authPage = () => {
         Firebase.userLogged(user => {
-            if(user) window.location.href = '/#/login';
+            if(!user) window.location.href = '/#/login';
+        });
+    }
+
+    authPageLogin = () => {
+        Firebase.userLogged(user => {
+            if(user) window.location.href = '/#/';
         });
     }
 

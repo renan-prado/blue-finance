@@ -9,12 +9,14 @@
 /* eslint-disable */
 
 import Util from '../Utils/';
+import Firebase from '../database/firebase';
 
 export default {
   name: 'home',
 
   created() {
     Util.authPage();
+    Firebase.logout();
   },
 
 };

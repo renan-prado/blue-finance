@@ -94,6 +94,18 @@ class Firebase {
             });
     }
 
+    logout(){
+        firebase
+            .auth()
+            .signOut()
+            .then(function() {
+                window.location.href = '/#/login';
+            })
+            .catch(function(error) {
+                console.warn('Erro ao fazer logout');
+            });
+    }
+
 }
 
 export default new Firebase()
