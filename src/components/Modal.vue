@@ -1,23 +1,3 @@
-<template>
-  <div class="modal">
-    <div class="main">
-      <div class="container">
-        
-        <div class="modal__box">
-
-          <div class="modal__header">
-            <button @click="close">Close</button>
-          </div>
-
-          <div id="my-chart" style="width:100%; height: 500px; margin-top: 20px;"></div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 
 import Highcharts from 'highcharts';
@@ -35,16 +15,17 @@ export default {
   props: ['currencies', 'modalType'],
 
   mounted(){
-
     this.allCurrencyHour;
-
   },
 
   methods: {
+
+    // close modal
     close: function(){
       this.$emit('close');
     },
 
+    // render chart 
     renderChart: function(dataChart){
       Highcharts.chart(document.getElementById('my-chart'), {
 
@@ -83,9 +64,10 @@ export default {
       });
     },
 
+    //  filter data by context
     filterFinancesData: function(allCurrencyHour, callback){
+      
       let itemMap;
-    
       let allCurrencyHourFiltered = allCurrencyHour.map(item => {
 
         // if have keys
@@ -104,6 +86,7 @@ export default {
       callback(allCurrencyHourFiltered);
     },
 
+    // mount chart
     mountChart: function(){
       const allCurrencyHourFiltered = this.allCurrencyHourFiltered;
       let timestamp, value, firstItem, lastItem;
@@ -161,7 +144,25 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<template>
+  <div class="modal">
+    <div class="main">
+      <div class="container">
+        <div class="modal__box">
+
+          <div class="modal__header">
+            <button @click="close"> Close </button>
+          </div>
+
+          <!-- Chart -->
+          <div id="my-chart" style="width:100%; height: 500px; margin-top: 20px;"></div>
+
+        </div> <!-- ./ modal__box -->
+      </div> <!-- ./ container -->
+    </div> <!-- ./ main -->
+  </div> <!-- ./ modal -->
+</template>
+
 <style scoped lang="scss">
   @import "../styles/components/modal.scss";
 </style>

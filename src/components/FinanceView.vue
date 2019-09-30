@@ -1,56 +1,3 @@
-<template>
-  <div class="finance-view">
-    <div class="main">
-      <div class="container">
-
-          <Loading v-show="loading" />
-          <Modal @close="modal = false" :currencies="currencies" :modalType="modalType" v-if="modal" />
-          
-          <div class="finance-view__group">
-            <!-- <h1> Cotações </h1> -->
-
-            <div class="finance-view__list">
-
-              <Financeitem
-                v-for="item in nowCurrencies"
-                :key="item.name"
-                @openModal="openModal"
-                :itemKey="item.key"
-                :type="'currencies'"
-                :variation="item.variation"
-                :value="item.buy"
-                :title="item.name" />
-
-              <FinanceItemStock
-                v-for="item in nowStocks"
-                :key="item.name"
-                @openModal="openModal"
-                :itemKey="item.key"
-                :type="'stocks'"
-                :variation="item.variation"
-                :value="item.name"
-                :title="item.location" />
-
-              <FinanceItemStock
-                v-for="item in nowOthers"
-                :key="item.name"
-                @openModal="openModal"
-                :itemKey="item.key"
-                :type="'others'"
-                :variation="item.variation"
-                :value="item.name"
-                :title="item.location" />
-              
-            </div> <!-- ./ finance-view__list -->
-
-          </div> <!-- ./ finance-view__group -->
-
-      </div> <!-- ./ container -->
-    </div> <!-- ./ main -->
-
-  </div>
-</template>
-
 <script>
 
 import Financeitem from "./FinanceItem";
@@ -82,19 +29,21 @@ export default {
 
   methods: {
 
+    // init component
     init: function(){
 
+      // data editing
       this.currenciesEditing = true;
       this.stocksEditing = true;
       this.othersEditing = true;
 
-      // get currencies | 7 days ago
+      // get currencies | 3 days ago
       Utils.getCurrencies(3, currencies => {
 
         // currencies object to array
         this.objectToArray(currencies, currenciesList => {
 
-          // reverse currency
+          // reverse currency array
           this.reverseCurrency(currenciesList, currenciesReverse => this.currencies = currenciesReverse);
 
         });
@@ -103,6 +52,7 @@ export default {
 
     },
 
+    // convert object to array
     objectToArray: function(object, callback){
 
       const objectkeys = Object.keys(object).reverse();
@@ -121,11 +71,13 @@ export default {
       callback(objectList);
     },
 
+    // reverse child array
     reverseCurrency: function(currencies, callback){
       const currenciesReverse = currencies.map(currency => currency.reverse());
       callback(currenciesReverse);
     },
 
+    // open modal
     openModal: function(data){
       this.modalType = data;
       this.modal = true;
@@ -137,20 +89,24 @@ export default {
 
     currencies: function(currencies){
 
+      // data editing
       this.currenciesEditing = true;
       this.stocksEditing = true;
       this.othersEditing = true;
 
+      // currencies object to array 
       this.objectToArray(currencies[0][0].currencies, nowCurrencies => {
         this.nowCurrencies = nowCurrencies.slice(1);
         this.currenciesEditing = false;
       });
 
+      // stocks object to array 
       this.objectToArray(currencies[0][0].stocks, nowStocks => {
         this.nowStocks = nowStocks;
         this.stocksEditing = false;
       });
 
+      // others object to array 
       this.objectToArray(currencies[0][0].others, nowOthers => {
         this.nowOthers = nowOthers;
         this.othersEditing = false;
@@ -177,7 +133,62 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<template>
+  <div class="finance-view">
+    <div class="main">
+      <div class="container">
+
+          <Loading v-show="loading" />
+          <Modal @close="modal = false" :currencies="currencies" :modalType="modalType" v-if="modal" />
+          
+          <div class="finance-view__group">
+            <!-- <h1> Cotações </h1> -->
+
+            <div class="finance-view__list">
+
+              <!-- Currency Items -->
+              <Financeitem
+                v-for="item in nowCurrencies"
+                :key="item.name"
+                @openModal="openModal"
+                :itemKey="item.key"
+                :type="'currencies'"
+                :variation="item.variation"
+                :value="item.buy"
+                :title="item.name" />
+
+              <!-- Stock Items -->
+              <FinanceItemStock
+                v-for="item in nowStocks"
+                :key="item.name"
+                @openModal="openModal"
+                :itemKey="item.key"
+                :type="'stocks'"
+                :variation="item.variation"
+                :value="item.name"
+                :title="item.location" />
+
+              <!-- Other Items -->
+              <FinanceItemStock
+                v-for="item in nowOthers"
+                :key="item.name"
+                @openModal="openModal"
+                :itemKey="item.key"
+                :type="'others'"
+                :variation="item.variation"
+                :value="item.name"
+                :title="item.location" />
+              
+            </div> <!-- ./ finance-view__list -->
+
+          </div> <!-- ./ finance-view__group -->
+
+      </div> <!-- ./ container -->
+    </div> <!-- ./ main -->
+
+  </div>
+</template>
+
 <style scoped lang="scss">
   @import "../styles/components/financeView.scss";
 </style>

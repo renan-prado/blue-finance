@@ -1,6 +1,5 @@
 /* eslint-disable */
 import firebase from 'firebase';
-import Axios from 'axios';
 import FirebaseConfig from './firebaseConfig.json';
 
 class Firebase {
@@ -10,6 +9,7 @@ class Firebase {
         if(!firebase.apps.length) firebase.initializeApp(FirebaseConfig)
     }
 
+    // check if the user is logged in
     userLogged(callback){
 
         firebase
@@ -22,40 +22,7 @@ class Firebase {
             })
     }
 
-    save(route, data, callback){
-        this.userLogged(user => {
-
-            if(user){
-                firebase
-                    .database()
-                    .ref( (route ? '/users/' : '/') + user.uid +  route)
-                    .set(data, callback)
-            }
-    
-            else {    
-                callback(false);
-            }
-            
-        })
-    }
-
-    saveFinance(route, data, callback){
-        this.userLogged(user => {
-
-            if(user){
-                firebase
-                    .database()
-                    .ref( '/finance/' + route)
-                    .set(data, callback)
-            }
-    
-            else {    
-                callback(false);
-            }
-            
-        })
-    }
-
+    // get data with route
     get(route, callback ){
 
         const snapshotData = firebase
@@ -66,6 +33,7 @@ class Firebase {
             .on('value', snapshot => callback(snapshot.val()) );
     }
     
+    // get data with route and limit
     getLimit(route, limit = 10, callback ){
 
         const snapshotData = firebase
@@ -77,6 +45,7 @@ class Firebase {
             .on('value', snapshot => callback(snapshot.val()) );
     }
 
+    // create user
     createUser(email, password, callback){
        
         firebase
@@ -92,6 +61,7 @@ class Firebase {
             });
     }
 
+    // login user
     login(email, password, callback){
         firebase
             .auth()
@@ -105,6 +75,7 @@ class Firebase {
             });
     }
 
+    // logout user
     logout(){
         firebase
             .auth()
@@ -117,6 +88,7 @@ class Firebase {
             });
     }
 
+    // verify duplicates
     verifyEmail(email, callback){
         firebase
             .auth()

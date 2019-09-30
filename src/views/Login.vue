@@ -1,6 +1,4 @@
 <script>
-/* eslint-disable */
-
 import Util from '../Utils/';
 import Firebase from '../database/firebase';
 import Loading from '../components/Loading';
@@ -19,7 +17,10 @@ export default {
   },
 
   created() {
+
+    // requires not to be authenticated
     Util.authPageLogin();
+    
   },
   
   components: {
@@ -30,10 +31,14 @@ export default {
 
     toLogin: function(){
 
+      // loading
       this.loading = true;
 
+      // get email and password
       const email = this.email;
       const password = this.password;
+
+      // create toast alert
       const Toast = Swal.mixin({
         toast: true,
         position: 'center',
@@ -41,17 +46,18 @@ export default {
         timer: 3000
       });
 
+      // Firebase Auth Login
       Firebase
         .login(email, password, (code, message) => {
           
+          // Disable loading
           this.loading = false;
 
-            Toast.fire({
-              type: 'warning',
-              title: 'O email ou a senha estão incorretos'
-            });
-          
-
+          // warning Alert
+          Toast.fire({
+            type: 'warning',
+            title: 'O email ou a senha estão incorretos'
+          });
         });
 
     }
@@ -72,13 +78,11 @@ export default {
 
         <div class="login__container">
           
-          <!-- Header -->
           <div class="login__header">
             <div class="login__logo" :style="`background-image: url(${publicPath}logo_header_blue.png)`"></div>
             <h1> Entrar </h1>
-          </div>
+          </div> <!-- ./ Header -->
 
-          <!-- Content -->
           <div class="login__content">
 
             <div class="login__content-section">
@@ -93,12 +97,11 @@ export default {
               <button @click="toLogin"> Entrar </button>
             </div>
 
-          </div>
+          </div> <!-- ./ Content -->
 
-          <!-- Footer -->
           <div class="login__footer">
             <router-link to="/signup">Criar uma conta</router-link>
-          </div>
+          </div>  <!-- ./ Footer -->
 
         </div> <!-- ./ login__container -->
 

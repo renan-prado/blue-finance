@@ -1,23 +1,13 @@
-<template>
-    <div class="finance-view__item" @click="openModal">
-      <div :class="{'finance-view__item-variation': true, '--red': variation < 0 }"> <label>{{ variation_set }} </label> </div>
-      <div class="finance-view__item-value"> <label> {{ value_set }} </label> </div>
-      <div class="finance-view__item-text"> <h2> {{ title_set }} </h2> </div>
-    </div> <!-- ./ finance-view__item -->
-</template>
-
 <script>
-
 export default {
   name: 'Financeitem',
 
-  data(){
-    return {
-    }
-  },
-
   methods: {
+    
+    // open modal 
     openModal: function(){
+
+      // sending context
       this.$emit('openModal', {
         key: this.itemKey,
         type: this.type,
@@ -45,6 +35,14 @@ export default {
   props: ['variation', 'value', 'title', 'itemKey', 'type']
 };
 </script>
+
+<template>
+    <div class="finance-view__item" @click="openModal">
+      <div :class="{'finance-view__item-variation': true, '--red': variation < 0 }"> <label>{{ variation_set }} </label> </div>
+      <div class="finance-view__item-value"> <label> {{ value_set }} </label> </div>
+      <div class="finance-view__item-text"> <h2> {{ title_set }} </h2> </div>
+    </div> <!-- ./ finance-view__item -->
+</template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">

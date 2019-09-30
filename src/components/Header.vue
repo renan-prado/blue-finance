@@ -1,3 +1,26 @@
+<script>
+  import Firebase from '../database/firebase'
+
+  export default {
+    name: 'Header',
+
+    data(){
+      return {
+        publicPath: process.env.BASE_URL,
+      }
+    },
+
+    methods: {
+      logout: function(){
+        
+        // user logout
+        Firebase.logout();
+      
+      }
+    }
+  };
+</script>
+
 <template>
   <div class="header">
   
@@ -16,28 +39,6 @@
   </div>
 </template>
 
-<script>
-
-import Firebase from '../database/firebase'
-
-export default {
-  name: 'Header',
-
-  data(){
-    return {
-      publicPath: process.env.BASE_URL,
-    }
-  },
-
-  methods: {
-    logout: function(){
-      Firebase.logout();
-    }
-  }
-};
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   @import "../styles/components/header.scss";
 </style>
