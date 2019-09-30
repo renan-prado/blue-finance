@@ -29,11 +29,11 @@ export default {
   computed: {
 
     variation_set: function(){
-      return this.variation ? this.variation.toFixed(3).replace('.', ',') + '%' : '';
+      return this.variation ? this.variation.toFixed(3).replace('.', ',') + '%' : '0,00%' ;
     },
 
     value_set: function(){
-      return this.value ? 'R$ ' + this.value.toFixed(2).replace('.', ',') : '';
+      return this.value ? 'R$ ' + this.value.toFixed(2).replace('.', ',') : 'R$ 0';
     },
 
     title_set: function(){

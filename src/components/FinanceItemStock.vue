@@ -29,7 +29,7 @@ export default {
   computed: {
 
     variation_set: function(){
-      return this.variation ? this.variation : '';
+      return this.variation ? this.variation + '%' : '0,00%';
     },
 
     value_set: function(){
