@@ -11,8 +11,8 @@ export default {
 
   data(){
     return {
-      email: 'renanprado96@gmail.com',
-      password: 'egtsejbegtsejb',
+      email: '',
+      password: '',
       loading: false
     }
   },

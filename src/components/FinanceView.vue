@@ -4,7 +4,7 @@
       <div class="container">
 
           <Loading v-show="loading" />
-          <Modal @close="modal = false" v-if="modal" />
+          <Modal @close="modal = false" :currencies="currencies" :modalType="modalType" v-if="modal" />
           
           <div class="finance-view__group">
             <!-- <h1> Cotações </h1> -->
@@ -15,6 +15,8 @@
                 v-for="item in nowCurrencies"
                 :key="item.name"
                 @openModal="openModal"
+                :itemKey="item.key"
+                :type="'currencies'"
                 :variation="item.variation"
                 :value="item.buy"
                 :title="item.name" />
@@ -23,6 +25,8 @@
                 v-for="item in nowStocks"
                 :key="item.name"
                 @openModal="openModal"
+                :itemKey="item.key"
+                :type="'stocks'"
                 :variation="item.variation"
                 :value="item.name"
                 :title="item.location" />
@@ -31,6 +35,8 @@
                 v-for="item in nowOthers"
                 :key="item.name"
                 @openModal="openModal"
+                :itemKey="item.key"
+                :type="'others'"
                 :variation="item.variation"
                 :value="item.name"
                 :title="item.location" />
@@ -65,7 +71,8 @@ export default {
       currenciesEditing: false,
       stocksEditing: false,
       othersEditing: false,
-      modal: false
+      modal: false,
+      modalType: {}
     }
   },
 
@@ -82,7 +89,7 @@ export default {
       this.othersEditing = true;
 
       // get currencies | 7 days ago
-      Utils.getCurrencies(7, currencies => {
+      Utils.getCurrencies(3, currencies => {
 
         // currencies object to array
         this.objectToArray(currencies, currenciesList => {
@@ -100,8 +107,16 @@ export default {
 
       const objectkeys = Object.keys(object).reverse();
       let objectList = [];
+      let obj;
 
-      objectkeys.forEach(value => objectList.push(object[value]));
+      objectkeys.forEach(value => {
+        
+        obj = object[value];
+
+        if(typeof obj == 'object') obj.key = value;
+
+        objectList.push(obj)
+      });
 
       callback(objectList);
     },
@@ -111,7 +126,8 @@ export default {
       callback(currenciesReverse);
     },
 
-    openModal: function(){
+    openModal: function(data){
+      this.modalType = data;
       this.modal = true;
     }
 

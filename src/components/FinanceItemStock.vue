@@ -18,7 +18,11 @@ export default {
 
   methods: {
     openModal: function(){
-      this.$emit('openModal');
+      this.$emit('openModal', {
+        key: this.itemKey,
+        type: this.type,
+        title: this.value
+      });
     }
   },
 
@@ -38,7 +42,7 @@ export default {
 
   },
 
-  props: ['variation', 'value', 'title']
+  props: ['variation', 'value', 'title', 'itemKey', 'type']
 };
 </script>
 

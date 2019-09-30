@@ -91,6 +91,10 @@
             background-color: $color-blue-dark;
         }
 
+        @media screen and (max-width: $screen-device-desktop){    
+            flex: 0 0 31%;
+        }
+
         @media screen and (max-width: $screen-device-tablet){    
             flex: 0 0 48%;
         }
