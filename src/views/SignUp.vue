@@ -149,7 +149,7 @@ export default {
             </div>
 
             <div class="login__content-section">
-              <input type="password" v-model="passwordConfirm" placeholder="Confirme a sua senha" />
+              <input type="password" v-model="passwordConfirm" placeholder="Confirme a sua senha" @keypress.enter="signUp" />
             </div>
 
             <div class="login__content-section">

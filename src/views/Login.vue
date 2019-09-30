@@ -86,7 +86,7 @@ export default {
             </div>
 
             <div class="login__content-section">
-              <input type="password" v-model="password" placeholder="Digite sua senha" />
+              <input type="password" v-model="password" placeholder="Digite sua senha" @keypress.enter="toLogin" />
             </div>
 
             <div class="login__content-section">
