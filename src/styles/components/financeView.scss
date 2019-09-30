@@ -33,6 +33,7 @@
         margin: 1%;
         transition: .3s;
         cursor: pointer;
+        @include box-shadow(4px, 8px, 8px, 0, #ccc);
 
         &-variation {
             flex: 2;
