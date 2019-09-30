@@ -50,6 +50,10 @@
                 color: $color-white;
                 cursor: pointer;
             }
+
+            &.--red label {
+                background-color: $color-red;
+            }
         }
 
         &-value {
