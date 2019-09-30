@@ -1,29 +1,26 @@
-# blue-finance
+# Welcome to Bluefinance!
 
-## Project setup
-```
-npm install
-```
+The Bluefinance is a quote monitoring tool developed with Vuejs , Sass and Firebase.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# Installation
 
-### Run your tests
-```
-npm run test
-```
+## View mode:
 
-### Lints and fixes files
-```
-npm run lint
-```
+    npm start
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Development mode:
+
+    npm install
+    npm run serve
+
+
+## Build
+
+    npm run build
+
+
+# Data Insert
+
+The data entry is performed by another application.
+[See more here](https://github.com/renan-prado/blue-finance-insert)
