@@ -19,7 +19,6 @@ export default {
 
   created() {
     Util.authPage();
-    // Firebase.logout();
   },
 
   components: {

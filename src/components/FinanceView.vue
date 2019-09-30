@@ -2,6 +2,8 @@
   <div class="finance-view">
     <div class="main">
       <div class="container">
+
+          <Loading v-show="loading" />
           
           <div class="finance-view__group">
             <!-- <h1> Cotações </h1> -->
@@ -43,6 +45,7 @@
 
 import Financeitem from "./FinanceItem";
 import FinanceItemStock from "./FinanceItemStock";
+import Loading from "./Loading";
 import Utils from "../Utils";
 
 export default {
@@ -53,7 +56,10 @@ export default {
       currencies: [],
       nowCurrencies: [],
       nowStocks: [],
-      nowOthers: []
+      nowOthers: [],
+      currenciesEditing: false,
+      stocksEditing: false,
+      othersEditing: false,
     }
   },
 
@@ -64,6 +70,10 @@ export default {
   methods: {
 
     init: function(){
+
+      this.currenciesEditing = true;
+      this.stocksEditing = true;
+      this.othersEditing = true;
 
       // get currencies | 7 days ago
       Utils.getCurrencies(7, currencies => {
@@ -100,17 +110,34 @@ export default {
   watch: {
 
     currencies: function(currencies){
+
+      this.currenciesEditing = true;
+      this.stocksEditing = true;
+      this.othersEditing = true;
+
       this.objectToArray(currencies[0][0].currencies, nowCurrencies => {
         this.nowCurrencies = nowCurrencies.slice(1);
+        this.currenciesEditing = false;
       });
 
       this.objectToArray(currencies[0][0].stocks, nowStocks => {
         this.nowStocks = nowStocks;
+        this.stocksEditing = false;
       });
 
       this.objectToArray(currencies[0][0].others, nowOthers => {
         this.nowOthers = nowOthers;
+        this.othersEditing = false;
       });
+
+    },
+
+  },
+
+  computed: {
+    
+    loading: function(){
+      return this.currenciesEditing || this.stocksEditing || this.othersEditing;
     }
 
   },
@@ -118,6 +145,7 @@ export default {
   components: {
     Financeitem,
     FinanceItemStock,
+    Loading,
   }
 };
 </script>

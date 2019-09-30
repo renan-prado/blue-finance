@@ -20,4 +20,26 @@ $header-height: 70px;
         background-position: center;
         background-size: 90%;
     }
+
+    .main .container {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        @include text-base;
+        color: $color-white;
+        transition: .3s;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 }

@@ -8,6 +8,8 @@
           <div class="header__logo" :style="`background-image: url(${publicPath}logo_header.svg)`"></div>
         </router-link>
 
+        <button @click="logout"> Sair </button>
+
       </div> <!-- ./ container -->
     </div> <!-- ./ main -->
 
@@ -16,12 +18,20 @@
 
 <script>
 
+import Firebase from '../database/firebase'
+
 export default {
   name: 'Header',
 
   data(){
     return {
       publicPath: process.env.BASE_URL,
+    }
+  },
+
+  methods: {
+    logout: function(){
+      Firebase.logout();
     }
   }
 };
