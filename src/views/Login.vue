@@ -13,7 +13,8 @@ export default {
     return {
       email: '',
       password: '',
-      loading: false
+      loading: false,
+      publicPath: process.env.BASE_URL,
     }
   },
 
@@ -73,6 +74,7 @@ export default {
           
           <!-- Header -->
           <div class="login__header">
+            <div class="login__logo" :style="`background-image: url(${publicPath}logo_header_blue.png)`"></div>
             <h1> Entrar </h1>
           </div>
 

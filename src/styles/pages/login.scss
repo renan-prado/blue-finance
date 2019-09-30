@@ -29,12 +29,23 @@
         display: flex;
         text-align: center;
         justify-items: center;
+        flex-direction: column;
 
         h1 {
             flex: 1;
-            align-self: flex-end;
+            align-self: center;
             @include text-title($color: $color-primary);
         }
+    }
+
+    &__logo {
+        width: 230px;
+        height: 70px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        align-self: center;
+        margin-top: 30px;
     }
 
     &__content {

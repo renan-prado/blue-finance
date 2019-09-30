@@ -22,7 +22,8 @@ export default {
       email: '',
       password: '',
       passwordConfirm: '',
-      loading: false
+      loading: false,
+      publicPath: process.env.BASE_URL,
     }
   },
 
@@ -132,6 +133,7 @@ export default {
           
           <!-- Header -->
           <div class="login__header">
+            <div class="login__logo" :style="`background-image: url(${publicPath}logo_header_blue.png)`"></div>
             <h1> Cadastrar </h1>
           </div>
 
