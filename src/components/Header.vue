@@ -5,7 +5,7 @@
       <div class="container">
         
         <router-link to="/">
-          <div class="header__logo" :style="`background-image: url(${publicPath}logo_header.svg)`"></div>
+          <div class="header__logo" :style="`background-image: url(${publicPath}logo_header.png)`"></div>
         </router-link>
 
         <button @click="logout"> Sair </button>
