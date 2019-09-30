@@ -8,13 +8,26 @@
 
             <div class="finance-view__list">
 
-              <Financeitem variation="-0.344" value="2.90" title="Dólar" />
-              <Financeitem variation="0.273" value="2.94" title="Euro" />
-              <Financeitem variation="-0.876" value="1.28" title="Peso Argentino" />
-              <Financeitem variation="0.099" value="2.57" title="Libra Estelina" />
-              <Financeitem variation="0.983" value="3.77" title="Bitcoin" />
-              <Financeitem variation="0.204" value="1.93" title="Bovespa" />
-              <Financeitem variation="-0.099" value="3.24" title="Não sei" />
+              <Financeitem
+                v-for="item in nowCurrencies"
+                :key="item.name"
+                :variation="item.variation"
+                :value="item.buy"
+                :title="item.name" />
+
+              <FinanceItemStock
+                v-for="item in nowStocks"
+                :key="item.name"
+                :variation="item.variation"
+                :value="item.name"
+                :title="item.location" />
+
+              <FinanceItemStock
+                v-for="item in nowOthers"
+                :key="item.name"
+                :variation="item.variation"
+                :value="item.name"
+                :title="item.location" />
               
             </div> <!-- ./ finance-view__list -->
 
@@ -29,17 +42,82 @@
 <script>
 
 import Financeitem from "./FinanceItem";
+import FinanceItemStock from "./FinanceItemStock";
+import Utils from "../Utils";
 
 export default {
   name: 'FinanceView',
 
   data(){
     return {
+      currencies: [],
+      nowCurrencies: [],
+      nowStocks: [],
+      nowOthers: []
     }
+  },
+
+  created(){
+    this.init();
+  },
+
+  methods: {
+
+    init: function(){
+
+      // get currencies | 7 days ago
+      Utils.getCurrencies(7, currencies => {
+
+        // currencies object to array
+        this.objectToArray(currencies, currenciesList => {
+
+          // reverse currency
+          this.reverseCurrency(currenciesList, currenciesReverse => this.currencies = currenciesReverse);
+
+        });
+
+      });
+
+    },
+
+    objectToArray: function(object, callback){
+
+      const objectkeys = Object.keys(object).reverse();
+      let objectList = [];
+
+      objectkeys.forEach(value => objectList.push(object[value]));
+
+      callback(objectList);
+    },
+
+    reverseCurrency: function(currencies, callback){
+      const currenciesReverse = currencies.map(currency => currency.reverse());
+      callback(currenciesReverse);
+    }
+
+  },
+
+  watch: {
+
+    currencies: function(currencies){
+      this.objectToArray(currencies[0][0].currencies, nowCurrencies => {
+        this.nowCurrencies = nowCurrencies.slice(1);
+      });
+
+      this.objectToArray(currencies[0][0].stocks, nowStocks => {
+        this.nowStocks = nowStocks;
+      });
+
+      this.objectToArray(currencies[0][0].others, nowOthers => {
+        this.nowOthers = nowOthers;
+      });
+    }
+
   },
 
   components: {
     Financeitem,
+    FinanceItemStock,
   }
 };
 </script>

@@ -1,15 +1,15 @@
 <template>
     <div class="finance-view__item">
       <div :class="{'finance-view__item-variation': true, '--red': variation < 0 }"> <label>{{ variation_set }} </label> </div>
-      <div class="finance-view__item-value"> <label> {{ value_set }} </label> </div>
-      <div class="finance-view__item-text"> <h2> {{ title_set }} </h2> </div>
+      <div class="finance-view__item-value"> <label style="font-size: 22px"> {{ value_set }} </label> </div>
+      <div class="finance-view__item-text"> <h2 style="font-size: 15px"> {{ title_set }} </h2> </div>
     </div> <!-- ./ finance-view__item -->
 </template>
 
 <script>
 
 export default {
-  name: 'Financeitem',
+  name: 'FinanceitemStock',
 
   data(){
     return {
@@ -19,11 +19,11 @@ export default {
   computed: {
 
     variation_set: function(){
-      return this.variation ? this.variation.toFixed(3).replace('.', ',') + '%' : '';
+      return this.variation ? this.variation : '';
     },
 
     value_set: function(){
-      return this.value ? 'R$ ' + this.value.toFixed(2).replace('.', ',') : '';
+      return this.value ? this.value : '';
     },
 
     title_set: function(){

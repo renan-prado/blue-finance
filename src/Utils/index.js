@@ -15,6 +15,10 @@ class Util {
         });
     }
 
+    getCurrencies = (quantity = 10, callback) => {
+        Firebase.getLimit('/finance/', quantity, currencies => callback(currencies));
+    }
+
 }
 
 export default new Util()

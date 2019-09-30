@@ -65,6 +65,17 @@ class Firebase {
         snapshotData
             .on('value', snapshot => callback(snapshot.val()) );
     }
+    
+    getLimit(route, limit = 10, callback ){
+
+        const snapshotData = firebase
+            .database()
+            .ref(route)
+            .limitToLast(limit);
+
+        snapshotData
+            .on('value', snapshot => callback(snapshot.val()) );
+    }
 
     createUser(email, password, callback){
        
