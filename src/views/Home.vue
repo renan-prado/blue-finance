@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <h1>This is an home page</h1>
+    <Header />
+    <FinanceView />
   </div>
 </template>
 
@@ -10,6 +11,8 @@
 
 import Util from '../Utils/';
 import Firebase from '../database/firebase';
+import Header from '../components/Header';
+import FinanceView from '../components/FinanceView';
 
 export default {
   name: 'home',
@@ -18,6 +21,11 @@ export default {
     Util.authPage();
     // Firebase.logout();
   },
+
+  components: {
+    Header,
+    FinanceView,
+  }
 
 };
 </script>

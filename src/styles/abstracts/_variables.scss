@@ -3,9 +3,13 @@
 $color-primary: #0067af;
 $color-secundary: #ff851b;
 $color-blue-dark: #192b46;
+$color-blue-dark-item: #313a46;
+$color-red: #EA2E49;
+$color-green: #53b557;
 
 // neutral colors
 $color-white: #FFFFFF;
+$color-grey: #717780;
 $color-grey-light: rgba(25,43,70,.04);
 
 // text colors
@@ -18,7 +22,10 @@ $color-text-base-opacity: #626973dd;
 
 // font
 $font-family-avenir: 'Avenir', Helvetica, Arial, sans-serif;
+$font-family-franklin: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+$font-size-bigtitle: 35px;
 $font-size-title: 30px;
+$font-size-h2: 20px;
 $font-size-base: 13px;
 
 // breakpoint screen

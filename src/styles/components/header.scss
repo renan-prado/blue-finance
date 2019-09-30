@@ -1,0 +1,23 @@
+@import '../abstracts//variables';
+@import '../abstracts/mixins';
+
+$header-height: 70px;
+
+.header {
+    width: 100%;
+    height: $header-height;
+    background-color: $color-primary;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    @include box-shadow(2px, 4px, 4px, 0, #ccc);
+
+    &__logo {
+        width: 165px;
+        height: $header-height;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 90%;
+    }
+}

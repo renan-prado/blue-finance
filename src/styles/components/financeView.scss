@@ -1,0 +1,94 @@
+@import '../abstracts//variables';
+@import '../abstracts/mixins';
+
+.finance-view {
+    width: 100%;
+    margin-top: 70px;
+
+    &__group {
+        padding-top: 60px;
+
+        h1 {
+            @include text-title($color: $color-primary);
+        }
+    }
+
+    &__list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 23%;
+        height: 190px;
+        background-color: $color-blue-dark-item;
+        border-radius: 10px;
+        box-sizing: border-box;
+        padding: 20px 20px;
+        margin: 1%;
+        transition: .3s;
+        cursor: pointer;
+
+        &-variation {
+            flex: 2;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 6px 0px;
+
+            label {
+                font-family: $font-family-avenir;
+                background-color: $color-green;
+                padding: 5px 15px;
+                border-radius: 5px;
+                font-size: $font-size-base;
+                color: $color-white;
+                cursor: pointer;
+            }
+        }
+
+        &-value {
+            flex: 2;
+            text-align: center;
+            justify-items: center;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 30px 0px;
+
+            label {
+                font-family: $font-family-franklin;
+                font-size: $font-size-bigtitle;
+                letter-spacing: 2px;
+                color: $color-white;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+
+        &-text {
+            flex: 2;
+
+            h2 {
+                font-family: $font-family-avenir;
+                font-size: $font-size-h2;
+                color: $color-grey;
+                text-align: center;
+                justify-self: flex-end;
+                cursor: pointer;
+            }
+        }
+
+        &:hover {
+            background-color: $color-blue-dark;
+        }
+
+        @media screen and (max-width: $screen-device-tablet){    
+            flex: 0 0 48%;
+        }
+    }
+}
