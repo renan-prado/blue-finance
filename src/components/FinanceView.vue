@@ -4,6 +4,7 @@
       <div class="container">
 
           <Loading v-show="loading" />
+          <Modal @close="modal = false" v-if="modal" />
           
           <div class="finance-view__group">
             <!-- <h1> Cotações </h1> -->
@@ -13,6 +14,7 @@
               <Financeitem
                 v-for="item in nowCurrencies"
                 :key="item.name"
+                @openModal="openModal"
                 :variation="item.variation"
                 :value="item.buy"
                 :title="item.name" />
@@ -20,6 +22,7 @@
               <FinanceItemStock
                 v-for="item in nowStocks"
                 :key="item.name"
+                @openModal="openModal"
                 :variation="item.variation"
                 :value="item.name"
                 :title="item.location" />
@@ -27,6 +30,7 @@
               <FinanceItemStock
                 v-for="item in nowOthers"
                 :key="item.name"
+                @openModal="openModal"
                 :variation="item.variation"
                 :value="item.name"
                 :title="item.location" />
@@ -46,6 +50,7 @@
 import Financeitem from "./FinanceItem";
 import FinanceItemStock from "./FinanceItemStock";
 import Loading from "./Loading";
+import Modal from "./Modal";
 import Utils from "../Utils";
 
 export default {
@@ -60,6 +65,7 @@ export default {
       currenciesEditing: false,
       stocksEditing: false,
       othersEditing: false,
+      modal: false
     }
   },
 
@@ -103,6 +109,10 @@ export default {
     reverseCurrency: function(currencies, callback){
       const currenciesReverse = currencies.map(currency => currency.reverse());
       callback(currenciesReverse);
+    },
+
+    openModal: function(){
+      this.modal = true;
     }
 
   },
@@ -146,6 +156,7 @@ export default {
     Financeitem,
     FinanceItemStock,
     Loading,
+    Modal,
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="finance-view__item">
+    <div class="finance-view__item" @click="openModal">
       <div :class="{'finance-view__item-variation': true, '--red': variation < 0 }"> <label>{{ variation_set }} </label> </div>
       <div class="finance-view__item-value"> <label> {{ value_set }} </label> </div>
       <div class="finance-view__item-text"> <h2> {{ title_set }} </h2> </div>
@@ -13,6 +13,12 @@ export default {
 
   data(){
     return {
+    }
+  },
+
+  methods: {
+    openModal: function(){
+      this.$emit('openModal');
     }
   },
 
