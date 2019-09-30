@@ -42,4 +42,9 @@ $header-height: 70px;
             opacity: 0.8;
         }
     }
+
+    @media screen and (max-width: $screen-device-mobile){
+        box-sizing: border-box;
+        padding: 0 20px;
+    }
 }

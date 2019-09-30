@@ -4,6 +4,7 @@
 .finance-view {
     width: 100%;
     margin-top: 70px;
+    margin-bottom: 40px;
 
     &__group {
         padding-top: 60px;
@@ -98,5 +99,14 @@
         @media screen and (max-width: $screen-device-tablet){    
             flex: 0 0 48%;
         }
+
+        @media screen and (max-width: $screen-device-mobile){    
+            flex: 0 0 80%;
+            margin: 2% 10%;
+        }
+    }
+
+    @media screen and (max-width: $screen-device-mobile){
+        margin-top: 0px;
     }
 }

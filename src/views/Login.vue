@@ -80,7 +80,7 @@ export default {
           <div class="login__content">
 
             <div class="login__content-section">
-              <input type="email" v-model="email" placeholder="Digite seu email" />
+              <input type="email" v-model="email" placeholder="Digite seu email" autofocus/>
             </div>
 
             <div class="login__content-section">
